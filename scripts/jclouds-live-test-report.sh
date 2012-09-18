@@ -11,6 +11,7 @@ tests[7]="cloudloadbalancers-uk"
 tests[8]="cloudservers"
 tests[9]="cloudservers-us"
 tests[10]="cloudservers-uk"
+tests[11]="rackspace-cloudidentity"
 
 for test in "${tests[@]}" 
 do
