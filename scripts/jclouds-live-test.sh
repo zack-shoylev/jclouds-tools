@@ -16,9 +16,9 @@ swift_clean() {
 
 TESTS[0]=providers,rackspace-cloudservers-us,.cloudservers-us-rc,nova_clean
 TESTS[1]=providers,rackspace-cloudservers-uk,.cloudservers-uk-rc,nova_clean
-TESTS[2]=apis,cloudfiles,swift_clean
-TESTS[3]=providers,cloudfiles-us,swift_clean
-TESTS[4]=providers,cloudfiles-uk,swift_clean
+TESTS[2]=apis,cloudfiles,.cloudfiles-us-rc,swift_clean
+TESTS[3]=providers,cloudfiles-us,.cloudfiles-us-rc,swift_clean
+TESTS[4]=providers,cloudfiles-uk,.cloudfiles-uk-rc,swift_clean
 TESTS[5]=apis,cloudloadbalancers,.cloudservers-us-rc
 TESTS[6]=providers,cloudloadbalancers-us,.cloudservers-us-rc
 TESTS[7]=providers,cloudloadbalancers-uk,.cloudservers-us-rc
@@ -40,10 +40,10 @@ for TEST in "${TESTS[@]}"; do
   CLEAN=$4
 
   source ~/$RC
-  echo $RELEASE $TYPE $TESTABLE $OS_USERNAME $OS_APIKEY $CLEAN
+  echo $RELEASE $TYPE $TESTABLE $RAX_USERNAME $RAX_APIKEY $CLEAN
 
   cd ~/dev/everett-toews/jclouds/$TYPE/$TESTABLE/
-  mvn -Dtest.$TESTABLE.identity=$OS_USERNAME -Dtest.$TESTABLE.credential=$OS_APIKEY -Plive clean install | tee ../../../jclouds.github.com/documentation/releasenotes/1.5.0/`basename $PWD`.txt
+  mvn -Dtest.$TESTABLE.identity=$RAX_USERNAME -Dtest.$TESTABLE.credential=$RAX_APIKEY -Plive clean install | tee ../../../jclouds.github.com/documentation/releasenotes/1.5.0/`basename $PWD`.txt
   cp ./target/surefire-reports/TestSuite.txt ../../../jclouds.github.com/documentation/releasenotes/1.5.0/`basename $PWD`-failures.txt
 
   $CLEAN
