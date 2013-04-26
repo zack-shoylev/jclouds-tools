@@ -2,8 +2,10 @@
 
 if [ ! -z "$1" ]; then
   RELEASE=$1
-  cd ~/dev/everett-toews/jclouds/
-  git checkout $RELEASE
+  cd ~/jclouds/
+  git fetch
+  git checkout --track $RELEASE
+  git pull --rebase
 fi
 
 nova_clean() {
@@ -40,11 +42,13 @@ for TEST in "${TESTS[@]}"; do
   CLEAN=$4
 
   source ~/$RC
+  echo "Variables:"
   echo $RELEASE $TYPE $TESTABLE $RAX_USERNAME $RAX_APIKEY $CLEAN
 
-  cd ~/dev/everett-toews/jclouds/$TYPE/$TESTABLE/
-  mvn -Dtest.$TESTABLE.identity=$RAX_USERNAME -Dtest.$TESTABLE.credential=$RAX_APIKEY -Plive clean install | tee ../../../jclouds.github.com/documentation/releasenotes/1.5.0/`basename $PWD`.txt
-  cp ./target/surefire-reports/TestSuite.txt ../../../jclouds.github.com/documentation/releasenotes/1.5.0/`basename $PWD`-failures.txt
+  cd ~/jclouds/$TYPE/$TESTABLE/
+  echo mvn -Dtest.$TESTABLE.identity=$RAX_USERNAME -Dtest.$TESTABLE.credential=$RAX_APIKEY -Plive clean install
+  mvn -Dtest.$TESTABLE.identity=$RAX_USERNAME -Dtest.$TESTABLE.credential=$RAX_APIKEY -Plive clean install | tee ~/jclouds.github.com/documentation/releasenotes/1.6.0/`basename $PWD`.txt
+  cp ./target/surefire-reports/TestSuite.txt ~/jclouds.github.com/documentation/releasenotes/1.6.0/`basename $PWD`-failures.txt
 
   $CLEAN
 done

@@ -16,6 +16,6 @@ tests[11]="rackspace-cloudidentity"
 for test in "${tests[@]}" 
 do
   echo "****************************** $test ******************************"
-  egrep "BUILD FAILURE" ~/dev/everett-toews/jclouds.github.com/documentation/releasenotes/1.5.0/$test.txt
+  egrep "BUILD FAILURE" ~/dev/everett-toews/jclouds.github.com/documentation/releasenotes/1.6.0/$test.txt
   egrep "Tests run: .*, Failures: .*, Errors: .*, Skipped: .*, Time elapsed: .* sec" ~/dev/everett-toews/jclouds.github.com/documentation/releasenotes/1.5.0/$test.txt
 done
