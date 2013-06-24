@@ -16,18 +16,14 @@ swift_clean() {
   swift list | grep $USER | xargs -n 1 swift delete
 }
 
-TESTS[0]=providers,rackspace-cloudservers-us,.cloudservers-us-rc,nova_clean
-TESTS[1]=providers,rackspace-cloudservers-uk,.cloudservers-uk-rc,nova_clean
-TESTS[2]=apis,cloudfiles,.cloudfiles-us-rc,swift_clean
-TESTS[3]=providers,cloudfiles-us,.cloudfiles-us-rc,swift_clean
-TESTS[4]=providers,cloudfiles-uk,.cloudfiles-uk-rc,swift_clean
-TESTS[5]=apis,cloudloadbalancers,.cloudservers-us-rc
-TESTS[6]=providers,cloudloadbalancers-us,.cloudservers-us-rc
-TESTS[7]=providers,cloudloadbalancers-uk,.cloudservers-us-rc
-TESTS[8]=apis,cloudservers,.cloudservers-us-rc,nova_clean
-TESTS[9]=providers,cloudservers-us,.cloudservers-us-rc,nova_clean
-TESTS[10]=providers,cloudservers-uk,.cloudservers-uk-rc,nova_clean
-TESTS[11]=apis,rackspace-cloudidentity,.cloudservers-us-rc
+TESTS[0]=providers,rackspace-cloudservers-uk,.cloudservers-uk-rc,nova_clean
+TESTS[1]=apis,cloudfiles,.cloudfiles-uk-rc,swift_clean
+TESTS[2]=providers,cloudfiles-uk,.cloudfiles-uk-rc,swift_clean
+TESTS[3]=apis,cloudloadbalancers,.cloudservers-uk-rc
+TESTS[4]=providers,cloudloadbalancers-uk,.cloudservers-uk-rc
+TESTS[5]=apis,cloudservers,.cloudservers-uk-rc,nova_clean
+TESTS[6]=providers,cloudservers-uk,.cloudservers-uk-rc,nova_clean
+TESTS[7]=apis,rackspace-cloudidentity,.cloudservers-uk-rc
 
 if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N ''
